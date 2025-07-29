@@ -69,18 +69,20 @@ python manage.py runserver
    - `DEBUG`: `False`
    - `SECRET_KEY`: сгенерируйте новый секретный ключ
    - `ALLOWED_HOSTS`: ваш домен на Render
-   - `SUPABASE_URL`: ваш URL Supabase (основная база данных)
+   - `SUPABASE_URL`: ваш URL Supabase
    - `SUPABASE_KEY`: ваш ключ Supabase
 
 5. **Настройте Build Command:**
 ```bash
-pip install -r requirements.txt && python manage.py tailwind build && python manage.py collectstatic --noinput
+chmod +x build.sh && ./build.sh
 ```
 
 6. **Настройте Start Command:**
 ```bash
 gunicorn tinggo.wsgi:application
 ```
+
+**Примечание:** Проект автоматически использует `build.sh` для установки зависимостей и сборки статических файлов.
 
 ## 🏗️ Структура проекта
 
