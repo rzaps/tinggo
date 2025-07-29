@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load i18n crispy_forms_tags %}
+
+{% block title %}{% trans "Profile" %} - TingGo{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- Profile Header -->
+        <div class="card bg-gradient-to-r from-orange-500 to-blue-600 text-white mb-8">
+            <div class="card-body">
+                <div class="flex items-center space-x-6">
+                    <div class="avatar">
+                        <div class="w-24 rounded-full ring ring-white ring-offset-base-100 ring-offset-2">
+                            {% if user.avatar %}
+                                <img src="{{ user.avatar.url }}" alt="{{ user.full_name }}" />
+                            {% else %}
+                                <div class="bg-white text-orange-600 rounded-full w-24 h-24 flex items-center justify-center text-3xl font-bold">
+                                    {{ user.first_name|first|upper }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold">{{ user.full_name }}</h1>
+                        <p class="text-xl opacity-90">{{ user.email }}</p>
+                        <div class="badge badge-primary mt-2">{{ user.get_role_display }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Forms -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Avatar Upload -->
+            <div class="card bg-white shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title text-2xl mb-6">{% trans "Profile Picture" %}</h2>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ avatar_form|crispy }}
+                        <button type="submit" class="btn btn-primary mt-4">
+                            {% trans "Update Avatar" %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Profile Information -->
+            <div class="card bg-white shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title text-2xl mb-6">{% trans "Profile Information" %}</h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ profile_form|crispy }}
+                        <button type="submit" class="btn btn-primary mt-4">
+                            {% trans "Update Profile" %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Stats -->
+        <div class="card bg-white shadow-xl mt-8">
+            <div class="card-body">
+                <h2 class="card-title text-2xl mb-6">{% trans "Account Information" %}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="stat">
+                        <div class="stat-title">{% trans "Member Since" %}</div>
+                        <div class="stat-value text-orange-600">{{ user.created_at|date:"M Y" }}</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-title">{% trans "Language" %}</div>
+                        <div class="stat-value text-blue-600">{{ user.get_language_display }}</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-title">{% trans "Status" %}</div>
+                        <div class="stat-value">
+                            {% if user.is_verified %}
+                                <span class="badge badge-success">{% trans "Verified" %}</span>
+                            {% else %}
+                                <span class="badge badge-warning">{% trans "Pending" %}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

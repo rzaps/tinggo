@@ -1,0 +1,1 @@
+web: gunicorn tinggo.wsgi:application 

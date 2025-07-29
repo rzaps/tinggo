@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Sign Up" %} - TingGo{% endblock %}
+
+{% block content %}
+<div class="tinggo-auth-container">
+    <div class="tinggo-auth-card">
+        <div class="tinggo-auth-header">
+            <h2 class="tinggo-auth-title">
+                {% trans "Create your TingGo account" %}
+            </h2>
+            <p class="tinggo-auth-subtitle">
+                {% trans "Join our cultural community and start your journey" %}
+            </p>
+        </div>
+        
+        <div class="tinggo-auth-form-container">
+            <form method="post" class="tinggo-auth-form">
+                {% csrf_token %}
+                
+                {% if form.errors %}
+                    <div class="tinggo-auth-alert tinggo-auth-alert-error">
+                        <span>{% trans "Please correct the errors below." %}</span>
+                    </div>
+                {% endif %}
+                
+                {% if form.non_field_errors %}
+                    <div class="tinggo-auth-alert tinggo-auth-alert-error">
+                        {% for error in form.non_field_errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="tinggo-auth-input-group">
+                        <div class="tinggo-auth-label">
+                            <span class="tinggo-auth-label-text">{% trans "First name" %} *</span>
+                        </div>
+                        <input type="text" name="first_name" class="tinggo-auth-input" placeholder="{% trans 'Enter your first name' %}" required>
+                        {% if form.first_name.errors %}
+                            <div class="tinggo-auth-error-text">{{ form.first_name.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="tinggo-auth-input-group">
+                        <div class="tinggo-auth-label">
+                            <span class="tinggo-auth-label-text">{% trans "Last name" %} *</span>
+                        </div>
+                        <input type="text" name="last_name" class="tinggo-auth-input" placeholder="{% trans 'Enter your last name' %}" required>
+                        {% if form.last_name.errors %}
+                            <div class="tinggo-auth-error-text">{{ form.last_name.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="tinggo-auth-input-group">
+                    <div class="tinggo-auth-label">
+                        <span class="tinggo-auth-label-text">{% trans "Email" %} *</span>
+                    </div>
+                    <input type="email" name="email" class="tinggo-auth-input" placeholder="{% trans 'Enter your email' %}" required>
+                    {% if form.email.errors %}
+                        <div class="tinggo-auth-error-text">{{ form.email.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="tinggo-auth-input-group">
+                        <div class="tinggo-auth-label">
+                            <span class="tinggo-auth-label-text">{% trans "Role" %} *</span>
+                        </div>
+                        <select name="role" class="tinggo-auth-select" required>
+                            {% for value, label in form.role.field.choices %}
+                                <option value="{{ value }}" {% if form.role.value == value %}selected{% endif %}>{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                        {% if form.role.errors %}
+                            <div class="tinggo-auth-error-text">{{ form.role.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="tinggo-auth-input-group">
+                        <div class="tinggo-auth-label">
+                            <span class="tinggo-auth-label-text">{% trans "Language" %} *</span>
+                        </div>
+                        <select name="language" class="tinggo-auth-select" required>
+                            {% for value, label in form.language.field.choices %}
+                                <option value="{{ value }}" {% if form.language.value == value %}selected{% endif %}>{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                        {% if form.language.errors %}
+                            <div class="tinggo-auth-error-text">{{ form.language.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="tinggo-auth-input-group">
+                    <div class="tinggo-auth-label">
+                        <span class="tinggo-auth-label-text">{% trans "Password" %} *</span>
+                    </div>
+                    <input type="password" name="password1" class="tinggo-auth-input" placeholder="{% trans 'Enter your password' %}" required>
+                    {% if form.password1.errors %}
+                        <div class="tinggo-auth-error-text">{{ form.password1.errors.0 }}</div>
+                    {% endif %}
+                    <div class="tinggo-auth-text-sm mt-1">
+                        {% trans "Password must be at least 6 characters long." %}
+                    </div>
+                </div>
+                
+                <div class="tinggo-auth-input-group">
+                    <div class="tinggo-auth-label">
+                        <span class="tinggo-auth-label-text">{% trans "Confirm password" %} *</span>
+                    </div>
+                    <input type="password" name="password2" class="tinggo-auth-input" placeholder="{% trans 'Confirm your password' %}" required>
+                    {% if form.password2.errors %}
+                        <div class="tinggo-auth-error-text">{{ form.password2.errors.0 }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="tinggo-auth-input-group">
+                    <div class="tinggo-auth-label">
+                        <label class="cursor-pointer flex items-center gap-2">
+                            <input type="checkbox" class="tinggo-auth-checkbox" required />
+                            <span class="tinggo-auth-label-text">
+                                {% trans "I agree to the" %} <a href="#terms" class="tinggo-auth-link">{% trans "Terms of Service" %}</a>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="tinggo-auth-button">
+                    {% trans "Create Account" %}
+                </button>
+            </form>
+            
+            <div class="tinggo-auth-divider">
+                <div class="tinggo-auth-divider-line"></div>
+                <span class="tinggo-auth-divider-text">{% trans "OR" %}</span>
+                <div class="tinggo-auth-divider-line"></div>
+            </div>
+            
+            <div class="tinggo-auth-footer">
+                <p class="tinggo-auth-footer-text">
+                    {% trans "Already have an account?" %}
+                    <a href="{% url 'accounts:custom_login' %}" class="tinggo-auth-link">{% trans "Sign in" %}</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

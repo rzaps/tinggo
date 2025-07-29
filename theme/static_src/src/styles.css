@@ -1,0 +1,143 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/**
+  * A catch-all path to Django template files, JavaScript, and Python files
+  * that contain Tailwind CSS classes and will be scanned by Tailwind to generate the final CSS file.
+  *
+  * If your final CSS file is not being updated after code changes, you may want to broaden or narrow
+  * the scope of this path.
+  */
+@source "../../../**/*.{html,py,js}";
+
+/* TingGo Custom Styles */
+@layer components {
+  /* Auth Pages Container */
+  .tinggo-auth-container {
+    @apply min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8;
+  }
+  
+  .tinggo-auth-card {
+    @apply max-w-md w-full space-y-8;
+  }
+  
+  .tinggo-auth-header {
+    @apply text-center;
+  }
+  
+  .tinggo-auth-title {
+    @apply mt-6 text-3xl font-extrabold text-gray-900;
+  }
+  
+  .tinggo-auth-subtitle {
+    @apply mt-2 text-sm text-gray-600;
+  }
+  
+  .tinggo-auth-form-container {
+    @apply bg-white shadow-xl rounded-lg p-8;
+  }
+  
+  .tinggo-auth-form {
+    @apply space-y-6;
+  }
+  
+  .tinggo-auth-input-group {
+    @apply flex flex-col gap-2;
+  }
+  
+  .tinggo-auth-label {
+    @apply flex flex-col gap-1;
+  }
+  
+  .tinggo-auth-label-text {
+    @apply text-sm font-medium text-gray-700;
+  }
+  
+  .tinggo-auth-input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent;
+  }
+  
+  .tinggo-auth-select {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent;
+  }
+  
+  .tinggo-auth-textarea {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent;
+  }
+  
+  .tinggo-auth-button {
+    @apply w-full px-4 py-2 bg-orange-600 text-white font-medium rounded-lg hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition-colors;
+  }
+  
+  .tinggo-auth-button-outline {
+    @apply w-full px-4 py-2 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 transition-colors;
+  }
+  
+  .tinggo-auth-button-error {
+    @apply w-full px-4 py-2 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors;
+  }
+  
+  .tinggo-auth-divider {
+    @apply flex items-center gap-4 my-6;
+  }
+  
+  .tinggo-auth-divider-line {
+    @apply flex-1 h-px bg-gray-300;
+  }
+  
+  .tinggo-auth-divider-text {
+    @apply text-sm text-gray-500 font-medium;
+  }
+  
+  .tinggo-auth-footer {
+    @apply text-center;
+  }
+  
+  .tinggo-auth-footer-text {
+    @apply text-sm text-gray-600;
+  }
+  
+  .tinggo-auth-error-text {
+    @apply text-sm text-red-600 mt-1;
+  }
+  
+  .tinggo-auth-link {
+    @apply text-orange-600 hover:text-orange-700 underline;
+  }
+  
+  .tinggo-auth-alert {
+    @apply p-4 rounded-lg border;
+  }
+  
+  .tinggo-auth-alert-error {
+    @apply p-4 rounded-lg border border-red-200 bg-red-50 text-red-800;
+  }
+  
+  .tinggo-auth-alert-success {
+    @apply p-4 rounded-lg border border-green-200 bg-green-50 text-green-800;
+  }
+  
+  .tinggo-auth-alert-info {
+    @apply p-4 rounded-lg border border-blue-200 bg-blue-50 text-blue-800;
+  }
+  
+  .tinggo-auth-checkbox {
+    @apply w-4 h-4 text-orange-600 border-gray-300 rounded focus:ring-orange-500;
+  }
+  
+  .tinggo-auth-flex-between {
+    @apply flex items-center justify-between;
+  }
+  
+  .tinggo-auth-flex-end {
+    @apply flex items-center justify-end;
+  }
+  
+  .tinggo-auth-text-center {
+    @apply text-center;
+  }
+  
+  .tinggo-auth-text-sm {
+    @apply text-sm text-gray-600;
+  }
+}

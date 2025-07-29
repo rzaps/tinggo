@@ -1,0 +1,247 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-29 07:33+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/accounts/custom_login.html:8
+msgid "Sign In"
+msgstr "Sign In"
+
+#: templates/accounts/custom_login.html:12
+msgid "Welcome Back!"
+msgstr "Welcome Back!"
+
+#: templates/accounts/custom_login.html:15
+msgid "Sign in to your TingGo account"
+msgstr "Sign in to your TingGo account"
+
+#: templates/accounts/custom_login.html:32
+msgid "Email"
+msgstr "Email"
+
+#: templates/accounts/custom_login.html:35
+msgid "Enter your email"
+msgstr "Enter your email"
+
+#: templates/accounts/custom_login.html:42
+msgid "Password"
+msgstr "Password"
+
+#: templates/accounts/custom_login.html:45
+msgid "Enter your password"
+msgstr "Enter your password"
+
+#: templates/accounts/custom_login.html:50
+msgid "Forgot your password?"
+msgstr "Forgot your password?"
+
+#: templates/accounts/custom_login.html:55
+msgid "Sign In"
+msgstr "Sign In"
+
+#: templates/accounts/custom_login.html:62
+msgid "OR"
+msgstr "OR"
+
+#: templates/accounts/custom_login.html:66
+msgid "Don't have an account?"
+msgstr "Don't have an account?"
+
+#: templates/accounts/custom_login.html:67
+msgid "Sign up"
+msgstr "Sign up"
+
+#: templates/accounts/register.html:8
+msgid "Sign Up"
+msgstr "Sign Up"
+
+#: templates/accounts/register.html:12
+msgid "Create your TingGo account"
+msgstr "Create your TingGo account"
+
+#: templates/accounts/register.html:15
+msgid "Join our cultural community and start your journey"
+msgstr "Join our cultural community and start your journey"
+
+#: templates/accounts/register.html:25
+msgid "Please correct the errors below."
+msgstr "Please correct the errors below."
+
+#: templates/accounts/register.html:35
+msgid "First name"
+msgstr "First name"
+
+#: templates/accounts/register.html:38
+msgid "Enter your first name"
+msgstr "Enter your first name"
+
+#: templates/accounts/register.html:45
+msgid "Last name"
+msgstr "Last name"
+
+#: templates/accounts/register.html:48
+msgid "Enter your last name"
+msgstr "Enter your last name"
+
+#: templates/accounts/register.html:55
+msgid "Email"
+msgstr "Email"
+
+#: templates/accounts/register.html:58
+msgid "Enter your email"
+msgstr "Enter your email"
+
+#: templates/accounts/register.html:65
+msgid "Role"
+msgstr "Role"
+
+#: templates/accounts/register.html:75
+msgid "Language"
+msgstr "Language"
+
+#: templates/accounts/register.html:85
+msgid "Password"
+msgstr "Password"
+
+#: templates/accounts/register.html:88
+msgid "Enter your password"
+msgstr "Enter your password"
+
+#: templates/accounts/register.html:91
+msgid "Password must be at least 6 characters long."
+msgstr "Password must be at least 6 characters long."
+
+#: templates/accounts/register.html:96
+msgid "Confirm password"
+msgstr "Confirm password"
+
+#: templates/accounts/register.html:99
+msgid "Confirm your password"
+msgstr "Confirm your password"
+
+#: templates/accounts/register.html:105
+msgid "I agree to the"
+msgstr "I agree to the"
+
+#: templates/accounts/register.html:106
+msgid "Terms of Service"
+msgstr "Terms of Service"
+
+#: templates/accounts/register.html:112
+msgid "Create Account"
+msgstr "Create Account"
+
+#: templates/accounts/register.html:119
+msgid "OR"
+msgstr "OR"
+
+#: templates/accounts/register.html:125
+msgid "Already have an account?"
+msgstr "Already have an account?"
+
+#: templates/accounts/register.html:126
+msgid "Sign in"
+msgstr "Sign in"
+
+#: templates/accounts/custom_password_reset.html:8
+msgid "Reset Password"
+msgstr "Reset Password"
+
+#: templates/accounts/custom_password_reset.html:12
+msgid "Reset Password"
+msgstr "Reset Password"
+
+#: templates/accounts/custom_password_reset.html:15
+msgid "Enter your email address and we'll send you a link to reset your password."
+msgstr "Enter your email address and we'll send you a link to reset your password."
+
+#: templates/accounts/custom_password_reset.html:35
+msgid "Email"
+msgstr "Email"
+
+#: templates/accounts/custom_password_reset.html:38
+msgid "Enter your email address"
+msgstr "Enter your email address"
+
+#: templates/accounts/custom_password_reset.html:43
+msgid "Send Reset Link"
+msgstr "Send Reset Link"
+
+#: templates/accounts/custom_password_reset.html:49
+msgid "OR"
+msgstr "OR"
+
+#: templates/accounts/custom_password_reset.html:53
+msgid "Remember your password?"
+msgstr "Remember your password?"
+
+#: templates/accounts/custom_password_reset.html:54
+msgid "Sign in"
+msgstr "Sign in"
+
+#: templates/home.html:8
+msgid "Welcome to TingGo"
+msgstr "Welcome to TingGo"
+
+#: templates/home.html:9
+msgid "Discover Cultural Experiences"
+msgstr "Discover Cultural Experiences"
+
+#: templates/home.html:10
+msgid "Connect with local communities and explore authentic cultural experiences"
+msgstr "Connect with local communities and explore authentic cultural experiences"
+
+#: templates/home.html:12
+msgid "Get Started"
+msgstr "Get Started"
+
+#: templates/home.html:102
+msgid "Get Started"
+msgstr "Get Started"
+
+#: theme/templates/base.html:22
+msgid "Home"
+msgstr "Home"
+
+#: theme/templates/base.html:57
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: theme/templates/base.html:58
+msgid "Profile"
+msgstr "Profile"
+
+#: theme/templates/base.html:59
+msgid "Logout"
+msgstr "Logout"
+
+#: theme/templates/base.html:63
+msgid "Login"
+msgstr "Login"
+
+#: theme/templates/base.html:64
+msgid "Sign Up"
+msgstr "Sign Up"
+
+#: templates/home.html:13
+msgid "Get Started"
+msgstr "Get Started"
+
+#: templates/home.html:103
+msgid "Get Started"
+msgstr "Get Started" 

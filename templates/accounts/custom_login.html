@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Sign In" %} - TingGo{% endblock %}
+
+{% block content %}
+<div class="tinggo-auth-container">
+    <div class="tinggo-auth-card">
+        <div class="tinggo-auth-header">
+            <h2 class="tinggo-auth-title">
+                {% trans "Welcome Back!" %}
+            </h2>
+            <p class="tinggo-auth-subtitle">
+                {% trans "Sign in to your TingGo account" %}
+            </p>
+        </div>
+        
+        <div class="tinggo-auth-form-container">
+            {% if messages %}
+            <div class="space-y-2 mb-6">
+                {% for message in messages %}
+                <div class="tinggo-auth-alert tinggo-auth-alert-{% if message.tags == 'error' %}error{% else %}success{% endif %}">
+                    <span>{{ message }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            <form method="post" class="tinggo-auth-form">
+                {% csrf_token %}
+                
+                <div class="tinggo-auth-input-group">
+                    <div class="tinggo-auth-label">
+                        <span class="tinggo-auth-label-text">{% trans "Email" %} *</span>
+                    </div>
+                    <input type="email" 
+                           name="email" 
+                           class="tinggo-auth-input" 
+                           placeholder="{% trans 'Enter your email' %}" 
+                           required>
+                </div>
+                
+                <div class="tinggo-auth-input-group">
+                    <div class="tinggo-auth-label">
+                        <span class="tinggo-auth-label-text">{% trans "Password" %} *</span>
+                    </div>
+                    <input type="password" 
+                           name="password" 
+                           class="tinggo-auth-input" 
+                           placeholder="{% trans 'Enter your password' %}" 
+                           required>
+                </div>
+                
+                <div class="tinggo-auth-input-group">
+                    <div class="flex items-center justify-between">
+                        <div class="text-sm">
+                            <a href="{% url 'accounts:custom_password_reset' %}" class="tinggo-auth-link">
+                                {% trans "Forgot your password?" %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="tinggo-auth-button">
+                    {% trans "Sign In" %}
+                </button>
+            </form>
+            
+            <div class="tinggo-auth-divider">
+                <div class="tinggo-auth-divider-line"></div>
+                <span class="tinggo-auth-divider-text">{% trans "OR" %}</span>
+                <div class="tinggo-auth-divider-line"></div>
+            </div>
+            
+            <div class="tinggo-auth-footer">
+                <p class="tinggo-auth-footer-text">
+                    {% trans "Don't have an account?" %}
+                    <a href="{% url 'accounts:register' %}" class="tinggo-auth-link">{% trans "Sign up" %}</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
