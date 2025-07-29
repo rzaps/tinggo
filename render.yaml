@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: tinggo
+    env: python
+    plan: free
+    buildCommand: ./build.sh
+    startCommand: gunicorn tinggo.wsgi:application
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.18
+      - key: DEBUG
+        value: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALLOWED_HOSTS
+        value: tinggo.onrender.com
+      - key: CSRF_TRUSTED_ORIGINS
+        value: https://tinggo.onrender.com
+      - key: SECURE_SSL_REDIRECT
+        value: true
+      - key: SESSION_COOKIE_SECURE
+        value: true
+      - key: CSRF_COOKIE_SECURE
+        value: true
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false 
