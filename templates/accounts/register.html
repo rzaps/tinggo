@@ -65,34 +65,18 @@
                     {% endif %}
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="tinggo-auth-input-group">
-                        <div class="tinggo-auth-label">
-                            <span class="tinggo-auth-label-text">{% trans "Role" %} *</span>
-                        </div>
-                        <select name="role" class="tinggo-auth-select" required>
-                            {% for value, label in form.role.field.choices %}
-                                <option value="{{ value }}" {% if form.role.value == value %}selected{% endif %}>{{ label }}</option>
-                            {% endfor %}
-                        </select>
-                        {% if form.role.errors %}
-                            <div class="tinggo-auth-error-text">{{ form.role.errors.0 }}</div>
-                        {% endif %}
+                <div class="tinggo-auth-input-group">
+                    <div class="tinggo-auth-label">
+                        <span class="tinggo-auth-label-text">{% trans "Role" %} *</span>
                     </div>
-                    
-                    <div class="tinggo-auth-input-group">
-                        <div class="tinggo-auth-label">
-                            <span class="tinggo-auth-label-text">{% trans "Language" %} *</span>
-                        </div>
-                        <select name="language" class="tinggo-auth-select" required>
-                            {% for value, label in form.language.field.choices %}
-                                <option value="{{ value }}" {% if form.language.value == value %}selected{% endif %}>{{ label }}</option>
-                            {% endfor %}
-                        </select>
-                        {% if form.language.errors %}
-                            <div class="tinggo-auth-error-text">{{ form.language.errors.0 }}</div>
-                        {% endif %}
-                    </div>
+                    <select name="role" class="tinggo-auth-select" required>
+                        {% for value, label in form.role.field.choices %}
+                            <option value="{{ value }}" {% if form.role.value == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if form.role.errors %}
+                        <div class="tinggo-auth-error-text">{{ form.role.errors.0 }}</div>
+                    {% endif %}
                 </div>
                 
                 <div class="tinggo-auth-input-group">

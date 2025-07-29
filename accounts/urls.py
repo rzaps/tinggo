@@ -11,6 +11,7 @@ urlpatterns = [
     path('password-reset/', views.custom_password_reset, name='custom_password_reset'),
     path('profile/', views.profile, name='profile'),
     path('dashboard/', views.dashboard, name='dashboard'),
+
     
     # Role-specific dashboards
     path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),

@@ -26,18 +26,10 @@ class CustomUserCreationForm(UserCreationForm):
         choices=User.UserRole.choices,
         widget=forms.Select(attrs={'class': 'select select-bordered w-full'})
     )
-    language = forms.ChoiceField(
-        choices=[
-            ('en', 'English'),
-            ('es', 'Español'),
-            ('ht', 'Kreyòl Ayisyen'),
-        ],
-        widget=forms.Select(attrs={'class': 'select select-bordered w-full'})
-    )
     
     class Meta:
         model = User
-        fields = ('email', 'first_name', 'last_name', 'role', 'language', 'password1', 'password2')
+        fields = ('email', 'first_name', 'last_name', 'role', 'password1', 'password2')
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

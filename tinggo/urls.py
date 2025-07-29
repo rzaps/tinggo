@@ -18,12 +18,21 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.i18n import set_language
+from django.conf.urls.i18n import i18n_patterns
 from accounts.views import home
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
+# URL patterns that should be internationalized
+urlpatterns = i18n_patterns(
     path('', home, name='home'),
     path('accounts/', include('accounts.urls')),
+    prefix_default_language=True,  # Prefix all languages including default (en)
+)
+
+# URL patterns that should NOT be internationalized
+urlpatterns += [
+    path('admin/', admin.site.urls),
+    path('i18n/', include('django.conf.urls.i18n')),  # Language switching
 ]
 
 # Serve media files during development

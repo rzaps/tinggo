@@ -1,45 +1,44 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import login, authenticate
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import CreateView, UpdateView
-from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 from .forms import CustomUserCreationForm, UserProfileForm, UserAvatarForm
 from .models import User, UserProfile
-from tinggo.supabase import create_user_profile, sign_up_user, sign_in_user, reset_password, update_password
+from tinggo.supabase import create_user_profile, sign_up_user, sign_in_user, reset_password
+
+
+def home(request):
+    return render(request, 'home.html')
 
 
 def register(request):
-    """
-    User registration view with Supabase integration
-    """
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password1')
             
-            # First, create user in Supabase Auth
+            # Get current language from session or default to 'en'
+            current_language = request.session.get('django_language', 'en')
+            
             supabase_user_data = {
                 'first_name': form.cleaned_data.get('first_name'),
                 'last_name': form.cleaned_data.get('last_name'),
                 'role': form.cleaned_data.get('role'),
-                'language': form.cleaned_data.get('language'),
+                'language': current_language,
             }
             
             supabase_user = sign_up_user(email, password, supabase_user_data)
             
             if supabase_user:
-                # Create user in Django
                 user = form.save(commit=False)
+                user.language = current_language  # Set language automatically
                 user.save()
-                
-                # Create user profile
                 UserProfile.objects.create(user=user)
                 
-                # Create user profile in Supabase
                 try:
                     user_data = {
                         'user_id': user.id,
@@ -56,10 +55,8 @@ def register(request):
                 except Exception as e:
                     print(f"Error creating user profile in Supabase: {e}")
                 
-                # Auto login after registration
                 user = authenticate(email=user.email, password=password)
                 login(request, user)
-                
                 messages.success(request, _('Welcome to TingGo! Your account has been created successfully.'))
                 return redirect('home')
             else:
@@ -73,9 +70,6 @@ def register(request):
 
 @login_required
 def profile(request):
-    """
-    User profile view
-    """
     user = request.user
     profile = user.profile
     
@@ -87,7 +81,6 @@ def profile(request):
             profile_form.save()
             avatar_form.save()
             
-            # Update user in Supabase
             try:
                 user_data = {
                     'user_id': user.id,
@@ -100,9 +93,8 @@ def profile(request):
                     'language': user.language,
                     'updated_at': user.updated_at.isoformat(),
                 }
-                create_user_profile(user_data)  # This will update if user exists
+                create_user_profile(user_data)
             except Exception as e:
-                # Log error but don't fail profile update
                 print(f"Error updating user in Supabase: {e}")
             
             messages.success(request, _('Profile updated successfully!'))
@@ -121,9 +113,6 @@ def profile(request):
 
 @login_required
 def dashboard(request):
-    """
-    User dashboard based on role
-    """
     user = request.user
     
     if user.is_admin:
@@ -138,27 +127,15 @@ def dashboard(request):
         return redirect('participant_dashboard')
 
 
-def home(request):
-    """
-    Home page view
-    """
-    return render(request, 'home.html')
-
-
 def custom_login(request):
-    """
-    Custom login view with Supabase integration
-    """
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
         
         if email and password:
-            # Try to authenticate with Supabase first
             supabase_user = sign_in_user(email, password)
             
             if supabase_user:
-                # Then authenticate with Django
                 user = authenticate(request, email=email, password=password)
                 if user is not None:
                     login(request, user)
@@ -175,14 +152,10 @@ def custom_login(request):
 
 
 def custom_password_reset(request):
-    """
-    Custom password reset view with Supabase integration
-    """
     if request.method == 'POST':
         email = request.POST.get('email')
         
         if email:
-            # Send password reset email via Supabase
             if reset_password(email):
                 messages.success(request, _('Password reset email sent. Please check your inbox.'))
                 return redirect('custom_login')
@@ -195,21 +168,13 @@ def custom_password_reset(request):
 
 
 def custom_logout(request):
-    """
-    Custom logout view
-    """
-    from django.contrib.auth import logout
     logout(request)
     messages.success(request, _('You have been successfully logged out.'))
     return redirect('home')
 
 
-# Admin views
 @login_required
 def admin_dashboard(request):
-    """
-    Admin dashboard view
-    """
     if not request.user.is_admin:
         messages.error(request, _('Access denied. Admin privileges required.'))
         return redirect('home')
@@ -224,12 +189,8 @@ def admin_dashboard(request):
     return render(request, 'accounts/admin_dashboard.html', context)
 
 
-# Organizer views
 @login_required
 def organizer_dashboard(request):
-    """
-    Organizer dashboard view
-    """
     if not request.user.is_organizer:
         messages.error(request, _('Access denied. Organizer privileges required.'))
         return redirect('home')
@@ -240,13 +201,14 @@ def organizer_dashboard(request):
     return render(request, 'accounts/organizer_dashboard.html', context)
 
 
-# Participant views
 @login_required
 def participant_dashboard(request):
-    """
-    Participant dashboard view
-    """
     context = {
         'user': request.user,
     }
     return render(request, 'accounts/participant_dashboard.html', context)
+
+
+
+    
+    return redirect('/') 

@@ -44,15 +44,43 @@
             <!-- Language Switcher -->
             <div class="dropdown dropdown-end mr-2">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-sm">
-                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
-                    </svg>
-                    {{ LANGUAGE_CODE|upper }}
+                    <span class="mr-1">🌐</span>
+                    {% if LANGUAGE_CODE == 'en' %}EN
+                    {% elif LANGUAGE_CODE == 'es' %}ES
+                    {% elif LANGUAGE_CODE == 'ht' %}HT
+                    {% else %}EN{% endif %}
                 </div>
                 <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-32">
-                    <li><a href="?lang=en">English</a></li>
-                    <li><a href="?lang=es">Español</a></li>
-                    <li><a href="?lang=ht">Kreyòl</a></li>
+                    <li>
+                        <form method="post" action="{% url 'set_language' %}" class="inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ request.path }}">
+                            <input type="hidden" name="language" value="en">
+                            <button type="submit" class="w-full text-left px-4 py-2 hover:bg-gray-100">
+                                🇺🇸 English
+                            </button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{% url 'set_language' %}" class="inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ request.path }}">
+                            <input type="hidden" name="language" value="es">
+                            <button type="submit" class="w-full text-left px-4 py-2 hover:bg-gray-100">
+                                🇪🇸 Español
+                            </button>
+                        </form>
+                    </li>
+                    <li>
+                        <form method="post" action="{% url 'set_language' %}" class="inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ request.path }}">
+                            <input type="hidden" name="language" value="ht">
+                            <button type="submit" class="w-full text-left px-4 py-2 hover:bg-gray-100">
+                                🇭🇹 Kreyòl
+                            </button>
+                        </form>
+                    </li>
                 </ul>
             </div>
             
