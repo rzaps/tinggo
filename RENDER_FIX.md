@@ -35,7 +35,7 @@ gunicorn wsgi:app --bind 0.0.0.0:$PORT
 ```
 DEBUG=False
 SECRET_KEY=your-secret-key
-ALLOWED_HOSTS=your-app-name.onrender.com
+ALLOWED_HOSTS=your-app-name.onrender.com,localhost,127.0.0.1
 SUPABASE_URL=your-supabase-url
 SUPABASE_KEY=your-supabase-key
 CSRF_TRUSTED_ORIGINS=https://your-app-name.onrender.com

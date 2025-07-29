@@ -13,7 +13,7 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: ALLOWED_HOSTS
-        value: tinggo.onrender.com
+        value: tinggo.onrender.com,localhost,127.0.0.1
       - key: CSRF_TRUSTED_ORIGINS
         value: https://tinggo.onrender.com
       - key: SECURE_SSL_REDIRECT
