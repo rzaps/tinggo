@@ -1,6 +1,8 @@
 """
-WSGI application entry point for Render deployment
+WSGI config for tinggo project.
+Alternative entry point for deployment platforms.
 """
+
 import os
 import sys
 
@@ -14,5 +16,5 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tinggo.settings')
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
 
-# Also export as 'app' for Render compatibility
+# Also export as 'app' for compatibility
 app = application 
