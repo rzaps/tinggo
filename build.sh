@@ -29,4 +29,8 @@ python manage.py collectstatic --noinput
 echo "🗄️  Running migrations..."
 python manage.py migrate
 
+# Compile translations
+echo "🌐 Compiling translations..."
+python compile_translations.py
+
 echo "✅ Build completed successfully!" 
